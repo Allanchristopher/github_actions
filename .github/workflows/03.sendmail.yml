@@ -9,18 +9,14 @@ jobs:
       - name: Print hello world
         run: echo "hello world"
 
-      - name: sending a mail
-        if: ${{ always() }}
-        uses: devellany/send-mailer@v1.0.2
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
-          host: smtp.gmail.com
-          port: 465
-          account: ${{secrets.ACCOUNT}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          sender: devellany
-          from: Allan christopher
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.ACCOUNT }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Mail title
+          body: Your message
           to: 05allanchristopher@gmail.com
-          subject: mail title.
-          body: your messages.
-          contentType: text/plain
-          attachments: '[{"path":"README.md"}]'
+          from: Allan Christopher <your-email@gmail.com>

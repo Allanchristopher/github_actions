@@ -1,0 +1,26 @@
+name: send mail
+on: push
+
+jobs:
+  sendmail:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print hello world
+        run: echo "hello world"
+
+      - name: sending a mail
+        if: ${{ always() }}
+        uses: devellany/send-mailer@v1.0.2
+        with:
+          host: smtp.gmail.com
+          port: 465
+          account: ${{secrets.ACCOUNT}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: devellany
+          from: Allan christopher
+          to: 05allanchristopher@gmail.com
+          subject: mail title.
+          body: your messages.
+          contentType: text/plain
+          attachments: '[{"path":"README.md"}]'
